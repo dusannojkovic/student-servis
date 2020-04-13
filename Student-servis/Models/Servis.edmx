@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ServisModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ispit">
+          <Key>
+            <PropertyRef Name="idIspit" />
+          </Key>
+          <Property Name="idIspit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Datum" Type="datetime" Nullable="false" />
+          <Property Name="Aktivan" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="idStudent" />
+          </Key>
+          <Property Name="idStudent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ime" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Prezime" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Adresa" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Datum_rodjenja" Type="datetime" Nullable="false" />
+          <Property Name="Broj_index" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Aktivan" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentIspit">
+          <Key>
+            <PropertyRef Name="id_Student" />
+            <PropertyRef Name="id_Ispit" />
+          </Key>
+          <Property Name="id_Student" Type="int" Nullable="false" />
+          <Property Name="id_Ispit" Type="int" Nullable="false" />
+          <Property Name="Ocena" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ServisModelStoreContainer">
+          <EntitySet Name="Ispit" EntityType="Self.Ispit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentIspit" EntityType="Self.StudentIspit" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ServisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ispit">
+          <Key>
+            <PropertyRef Name="idIspit" />
+          </Key>
+          <Property Name="idIspit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Aktivan" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="idStudent" />
+          </Key>
+          <Property Name="idStudent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Adresa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Datum_rodjenja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Broj_index" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Aktivan" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentIspit">
+          <Key>
+            <PropertyRef Name="id_Student" />
+            <PropertyRef Name="id_Ispit" />
+          </Key>
+          <Property Name="id_Student" Type="Int32" Nullable="false" />
+          <Property Name="id_Ispit" Type="Int32" Nullable="false" />
+          <Property Name="Ocena" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ServisEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ispits" EntityType="Self.Ispit" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="StudentIspits" EntityType="Self.StudentIspit" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ServisModelStoreContainer" CdmEntityContainer="ServisEntities">
+          <EntitySetMapping Name="Ispits">
+            <EntityTypeMapping TypeName="ServisModel.Ispit">
+              <MappingFragment StoreEntitySet="Ispit">
+                <ScalarProperty Name="idIspit" ColumnName="idIspit" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="ServisModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="idStudent" ColumnName="idStudent" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="Datum_rodjenja" ColumnName="Datum_rodjenja" />
+                <ScalarProperty Name="Broj_index" ColumnName="Broj_index" />
+                <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentIspits">
+            <EntityTypeMapping TypeName="ServisModel.StudentIspit">
+              <MappingFragment StoreEntitySet="StudentIspit">
+                <ScalarProperty Name="id_Student" ColumnName="id_Student" />
+                <ScalarProperty Name="id_Ispit" ColumnName="id_Ispit" />
+                <ScalarProperty Name="Ocena" ColumnName="Ocena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

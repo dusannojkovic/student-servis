@@ -1,0 +1,48 @@
+﻿@model Student_servis.Dto.IspitDto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@if (TempData["error"] != null)
+{
+    <h3 class="text-danger">@TempData["error"]</h3>
+}
+
+<div class="row">
+    <h2>Detalji ispita</h2>
+    <hr />
+    <div class="col-sm-4">
+        <img src="~/Images/detailsIspit.png" width="230px" height="150px" />
+    </div>
+    <div class="col-sm-4">
+        <table class="table-responsive">
+            <tr>
+                <td><b><h4>@Html.DisplayNameFor(model => model.Naziv): &nbsp;&nbsp;</h4></b></td>
+                <td>
+                    <b><i><h4>@Html.DisplayFor(model => model.Naziv)</h4></i></b>
+                </td>
+            </tr>
+            <tr>
+                <td><b><h4>@Html.DisplayNameFor(model => model.Datum): &nbsp;&nbsp;</h4></b></td>
+                <td>
+                    <b><i><h4>@Html.DisplayFor(model => model.Datum)</h4></i></b>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+    
+</div>
+</br>
+</br>
+<div>
+    @if (Model != null)
+    {
+        <button class="btn btn-primary">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.idIspit }) |
+        </button> 
+    }
+    
+    <button class="btn btn-success">@Html.ActionLink("Lista ispita", "Index")</button>
+ </div>

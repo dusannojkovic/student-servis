@@ -1,0 +1,81 @@
+﻿@model Student_servis.Dto.StudentDto
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Kreiranje studenta</h2>
+<p>@TempData["error"]</p>
+<h3>@ViewBag.Error</h3>
+@using (Html.BeginForm())
+{
+    <hr />
+    @Html.AntiForgeryToken()
+    
+    <div class="col-sm-4">
+        <img src="~/Images/createStudent.png"  />
+    </div>
+    <div class="form-horizontal col-sm-8">
+
+        
+       
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ime, new { htmlAttributes = new { @class = "form-control", @placeholder = "e.g Dusan" } })
+                @Html.ValidationMessageFor(model => model.Ime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Prezime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Prezime, new { htmlAttributes = new { @class = "form-control", @placeholder = "e.g Nojkovic" } })
+                @Html.ValidationMessageFor(model => model.Prezime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Adresa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Adresa, new { htmlAttributes = new { @class = "form-control" , @placeholder = "e.g Sumadijske divizije 21" } })
+                @Html.ValidationMessageFor(model => model.Adresa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Datum_rodjenja, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Datum_rodjenja, new { htmlAttributes = new { @class = "form-control" , @placeholder = "e.g 1996-01-30" } })
+                @Html.ValidationMessageFor(model => model.Datum_rodjenja, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Broj_indeks, htmlAttributes: new { @class = "control-label col-md-2"  })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Broj_indeks, new { htmlAttributes = new { @class = "form-control", @placeholder = "e.g 20/15" } })
+                @Html.ValidationMessageFor(model => model.Broj_indeks, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+    
+
+}
+
+<div>
+    <button class="btn btn-success">@Html.ActionLink("Lista studenata", "Index")</button>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

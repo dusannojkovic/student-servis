@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ServisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Ispit">
+    <Key>
+      <PropertyRef Name="idIspit" />
+    </Key>
+    <Property Name="idIspit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="idStudent" />
+    </Key>
+    <Property Name="idStudent" Type="Int32" Nullable="false" />
+    <Property Name="Ime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Adresa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Datum_rodjenja" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Broj_indeks" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Aktivan" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StudentIspit">
+    <Key>
+      <PropertyRef Name="id_Student" />
+      <PropertyRef Name="id_Ispit" />
+    </Key>
+    <Property Name="id_Student" Type="Int32" Nullable="false" />
+    <Property Name="id_Ispit" Type="Int32" Nullable="false" />
+    <Property Name="Ocena" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="StudentContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ispits" EntityType="Self.Ispit" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="StudentIspits" EntityType="Self.StudentIspit" />
+  </EntityContainer>
+</Schema>

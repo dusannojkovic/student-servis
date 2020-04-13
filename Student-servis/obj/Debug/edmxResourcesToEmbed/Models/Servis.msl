@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ServisModelStoreContainer" CdmEntityContainer="ServisEntities">
+    <EntitySetMapping Name="Ispits">
+      <EntityTypeMapping TypeName="ServisModel.Ispit">
+        <MappingFragment StoreEntitySet="Ispit">
+          <ScalarProperty Name="idIspit" ColumnName="idIspit" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="ServisModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="idStudent" ColumnName="idStudent" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Datum_rodjenja" ColumnName="Datum_rodjenja" />
+          <ScalarProperty Name="Broj_index" ColumnName="Broj_index" />
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentIspits">
+      <EntityTypeMapping TypeName="ServisModel.StudentIspit">
+        <MappingFragment StoreEntitySet="StudentIspit">
+          <ScalarProperty Name="id_Student" ColumnName="id_Student" />
+          <ScalarProperty Name="id_Ispit" ColumnName="id_Ispit" />
+          <ScalarProperty Name="Ocena" ColumnName="Ocena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

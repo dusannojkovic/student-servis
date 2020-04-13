@@ -1,0 +1,44 @@
+﻿@model Student_servis.Dto.IspitDto
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Da li ste sigurni da zelite da obrisete ispit?</h3>
+<div class="row">
+    <hr />
+    <div class="col-sm-4">
+        <img src="~/Images/deleteStudent.png" width="200px" height="200px" />
+    </div>
+    <div class="col-sm-4">
+        <table class="table-responsive">
+            <tr>
+                <td><b><h4>@Html.DisplayNameFor(model => model.Naziv): &nbsp;&nbsp;</h4></b></td>
+                <td>
+                    <b><i><h4>@Html.DisplayFor(model => model.Naziv)</h4></i></b>
+                </td>
+            </tr>
+            <tr>
+                <td><b><h4>@Html.DisplayNameFor(model => model.Datum): &nbsp;&nbsp;</h4></b></td>
+                <td>
+                    <b><i><h4>@Html.DisplayFor(model => model.Datum)</h4></i></b>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>
+    </br>
+    </br>
+    </br>
+    </br>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <button class="btn btn-success">@Html.ActionLink("Lista predmeta", "Index")</button>
+        </div>
+    }
+</div>

@@ -1,0 +1,61 @@
+﻿@model Student_servis.Dto.IspitDto
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Kreiranje ispita</h2>
+@if (TempData["error"] != null)
+{
+    <h3 class="text-danger">@TempData["error"]</h3>
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <hr />
+        @Html.AntiForgeryToken()
+        <div class="col-sm-4">
+
+            <img src="~/Images/createIspit.png" width="200px" height="200px" />
+            
+        </div>
+        <div class="form-horizontal col-sm-8">
+
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Naziv, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Naziv, new { htmlAttributes = new { @class = "form-control" , @placeholder= "e.g Web programiranje"} })
+                    @Html.ValidationMessageFor(model => model.Naziv, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Datum, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Datum, new { htmlAttributes = new { @class = "form-control", @placeholder = "e.g 2020-02-25" } })
+                    @Html.ValidationMessageFor(model => model.Datum, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+</br>
+</br>
+</br>
+<div>
+    <button class="btn btn-success">@Html.ActionLink("Lista ispita", "Index")</button>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

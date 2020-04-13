@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Student_servis.Models.Student>
+
+@{
+    ViewBag.Title = "Studenti";
+}
+
+<h2>Studenti | StudentServis</h2>
+
+<p>
+    <button class="btn btn-primary">@Html.ActionLink("Novi student", "Create")</button>
+</p>
+<table class="table" style="color:white" id="tabela">
+    <thead>
+        <tr >
+            <th>
+                @Html.DisplayNameFor(model => model.Ime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prezime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Datum_rodjenja)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Broj_index)
+            </th>
+            <th>Funkc...</th>
+        </tr>
+    </thead>
+   
+
+    @foreach (var item in Model)
+    {
+        <tr style="background-color:black">
+            @{
+                var datum = item.Datum_rodjenja.ToString("dd-MM-yyyy");
+            }
+            <td>
+                <img src="~/Images/person.ico" width="32px" height="32px" />  @Html.DisplayFor(modelItem => item.Ime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prezime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => datum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Broj_index)
+            </td>
+            <td>
+                <button class="btn btn-primary">@Html.ActionLink("Edit", "Edit", new { id = item.idStudent })</button> |
+                <button class="btn btn-success">@Html.ActionLink("Details", "Details", new { id = item.idStudent })</button> |
+                <button class="btn btn-danger">@Html.ActionLink("Delete", "Delete", new { id = item.idStudent })</button>
+            </td>
+        </tr>
+                }
+
+</table>
+<link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section Scripts{
+    <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#tabela').DataTable().push();
+            $('#tabela.red').css("background-color","black");
+
+        })
+    </script>
+}
+<a href='@Url.Action("Index", "Ispit")'>
+    <img src='@Url.Content("~/Images/list.ico")' width="45px" height="45px"/>
+</a><b><i> Lista ispita</i></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href='@Url.Action("Create", "StudentIspit")'>
+    <img src='@Url.Content("~/Images/create.ico")' width="42px" height="42px" />
+</a><b><i>&nbsp; Kreiranje ispita za studente</i></b>

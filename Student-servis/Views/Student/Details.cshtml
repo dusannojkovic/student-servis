@@ -1,0 +1,69 @@
+﻿@model Student_servis.Dto.StudentDto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@if (TempData["error"] != null)
+{
+    <h3 class="text-danger">@TempData["error"]</h3>
+}
+
+<div class="row">
+    <h2>Student: <u>@Html.DisplayFor(model => model.Ime)</u></h2>
+    <hr />
+    <div class="col-sm-4">
+        <img src="~/Images/detailsStudent.png" width="230px" height="230px" />
+    </div>
+    <div class="col-sm-4">
+        <table class="table-responsive">
+            <tr>
+                <td><b><h4>@Html.DisplayNameFor(model => model.Ime): &nbsp;&nbsp;</h4></b></td>
+                <td>
+                    <b><i><h4>@Html.DisplayFor(model => model.Ime)</h4></i></b>
+                </td>
+            </tr>
+            <tr>
+                <td><b><h4>@Html.DisplayNameFor(model => model.Prezime): &nbsp;&nbsp;</h4></b></td>
+                <td>
+                    <b><i><h4>@Html.DisplayFor(model => model.Prezime)</h4></i></b>
+                </td>
+            </tr>
+            <tr>
+                <td><b><h4>@Html.DisplayNameFor(model => model.Adresa): &nbsp;&nbsp;</h4></b></td>
+                <td>
+                    <b><i><h4>@Html.DisplayFor(model => model.Adresa)</h4></i></b>
+                </td>
+            </tr>
+            <tr>
+                <td><b><h4>@Html.DisplayNameFor(model => model.Datum_rodjenja): &nbsp;&nbsp;</h4></b></td>
+                <td>
+                    <b><i><h4>@Html.DisplayFor(model => model.Datum_rodjenja)</h4></i></b>
+                </td>
+            </tr>
+            <tr>
+                <td><b><h4>@Html.DisplayNameFor(model => model.Broj_indeks): &nbsp;&nbsp;</h4></b></td>
+                <td>
+                    <b><i><h4>@Html.DisplayFor(model => model.Broj_indeks)</h4></i></b>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+</br>
+</br>
+<div>
+    @if(Model != null)
+    {
+        <button class="btn btn-primary">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.idStudent })
+        </button> 
+    }
+    
+    <button class="btn btn-success">@Html.ActionLink("Lista studenata", "Index")</button>
+</div>
+@*<p>
+    <button class="btn btn-primary">@Html.ActionLink("Edit", "Edit", new { id = Model.idStudent })</button> |
+    <button class="btn btn-success">@Html.ActionLink("Lista studenata", "Index")</button>
+</p>*@

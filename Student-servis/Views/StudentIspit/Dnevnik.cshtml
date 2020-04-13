@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Dnevnik";
+}
+
+<h2>Evidencija ispita | StudentServis</h2>
+
+<table class="table" style="color:white" id="tabela">
+    <thead>
+        <tr style="color:white">
+            <th>IME</th>
+            <th>PREZIME</th>
+            <th>BROJ INDEKSA</th>
+            <th>PREDMET</th>
+            <th>OCENA</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    @foreach(var item in ViewBag.podaci)
+    {
+        if(@item.Student.Aktivan != 0)
+        {
+            <tr style="background-color:black">
+                <td>
+                    <img src="~/Images/person.ico" width="32px" height="32px" />  @item.Student.Ime
+                </td>
+                <td>
+                    @item.Student.Prezime
+                </td>
+                <td>
+                    @item.Student.Broj_index
+                </td>
+                <td>
+                    @item.Ispit.Naziv
+                </td>
+                <td>
+                    @item.Ocena
+                </td>
+                <td>
+
+                    @if (@item.Ocena > 5)
+                    {
+                        <img src="~/Images/checkYes.ico" width="32px" height="32px" />
+                    }
+                    @if (@item.Ocena == 5)
+                    {
+
+                        <img src="~/Images/checkNo.ico" width="37px" height="37px" />
+                    }
+                </td>
+            </tr>
+        }
+
+    }
+    
+
+</table>
+<link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section Scripts{
+    <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script> 
+    <script>
+        $(document).ready(function(){
+            $('#tabela').DataTable().push();
+            $('#tabela.red').css("background-color","black");
+            
+        })
+    </script>
+    }
+<a href='@Url.Action("Index", "Ispit")'>
+    <img src='@Url.Content("~/Images/list.ico")' width="45px" height="45px" />
+</a><b><i>&nbsp;Lista ispita</i></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href='@Url.Action("Create", "StudentIspit")'>
+    <img src='@Url.Content("~/Images/create.ico")' width="42px" height="42px" />
+</a><b><i>&nbsp;Kreiranje ispita za studenta</i></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href='@Url.Action("Index", "Student")'>
+    <img src='@Url.Content("~/Images/listStudenata.ico")' width="45px" height="45px" />
+</a><b><i>&nbsp;Lista studenata</i></b>

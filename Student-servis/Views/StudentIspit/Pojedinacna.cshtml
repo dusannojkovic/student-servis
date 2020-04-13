@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Detalji-Master";
+}
+
+
+</br>
+</br>
+</br>
+</br>
+
+<table class="table" id="tabela">
+    <thead>
+        <tr>
+            <th>IME</th>
+            <th>PREZIME</th>
+            <th>ADRESA</th>
+            <th>DATUM RODJENJA</th>
+            <th>BROJ INDEKSA</th>
+           <th>DETALJI</th>
+        </tr>
+    </thead>
+    
+    @if (ViewBag.podaci != null)
+    {
+        foreach (var item in ViewBag.podaci)
+        {
+
+            if(@item.Aktivan != 0)
+            {
+                        @*<button onclick="ConfirmShow(@item.idStudent)">@item.Ime @item.Broj_index</button>*@
+                        <tr style="background-color:black">
+                            <td>
+                                <img src="~/Images/person.ico" width="32px" height="32px" />  @item.Ime
+                            </td>
+                            <td>
+                                @item.Prezime
+                            </td>
+                            <td>
+                                @item.Adresa
+                            </td>
+                            <td>
+                                @item.Datum_rodjenja
+                            </td>
+                            <td>
+                                @item.Broj_index
+                            </td>
+                            <td>
+                                <a href="#" onclick="ConfirmShow(@item.idStudent)"><img src="~/Images/eyeDetails.ico" width="40px" height="40px"/></a>
+                            </td>
+                  
+                        </tr>
+            }
+        }
+    }
+
+
+</table>
+
+    <div class="modal fade" id="mymodal">
+        <div class="modal-dialog">
+            <div class="modal-content" style="color:white; background-color:black">
+                <div class="modal-header">
+                    <h3>Detalji o ispitu</h3>
+                </div>
+                <div class="modal-body" id="myModalBodyDiv">
+
+                    
+
+
+                </div>
+                <div class="modal-footer">
+                    <a href='@Url.Action("Create", "StudentIspit")'>
+                        <img src='@Url.Content("~/Images/create.ico")' width="42px" height="42px" />
+                    </a><b><i>&nbsp;Kreiranje ispita za studenta</i></b>
+                    <a href='@Url.Action("Index", "Student")'>
+                        <img src='@Url.Content("~/Images/listStudenata.ico")' width="45px" height="45px" />
+                    </a><b><i> Lista studenata</i></b>
+                    <a href='@Url.Action("Index", "Ispit")'>
+                        <img src='@Url.Content("~/Images/list.ico")' width="45px" height="45px" />
+                    </a><b><i> Lista ispita</i></b>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="hiddenIdStudent" />
+ 
+<link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section Scripts{
+    <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#tabela').DataTable().push();
+            $('#tabela.red').css("background-color","black");
+
+        })
+    </script>
+}
+    <script>
+        var ConfirmShow = function (idStudent) {
+            var url = "/StudentIspit/JedanStudent?idStudent=" + idStudent;
+            $("#myModalBodyDiv").load(url, function () {
+                $("#mymodal").modal("show");
+            });
+
+
+        }
+    </script>
+
